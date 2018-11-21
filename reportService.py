@@ -1,12 +1,11 @@
-import moment
 import datetime
 
 def crossdocking(mongo, params):
     findfilters = {
         'log.date': {
-            '$gte': datetime.datetime(2018,1,24,21,34,54),
-            '$lt': datetime.datetime(2018,1,25,21,34,54)
-        }
+            '$gte': datetime.datetime.strptime(params['dateFrom'], "%Y-%m-%d"),#datetime.datetime(2018,1,24),
+            '$lt': datetime.datetime.strptime(params['dateTo'], "%Y-%m-%d")#datetime.datetime(2018,1,25)
+        },
+        'removed': False
     }
-    storage = mongo.db.storage.find(findfilters)
-    return storage
+    return list(mongo.db.storage.find(findfilters))

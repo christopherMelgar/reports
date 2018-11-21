@@ -6,4 +6,7 @@ _ambito donde instalaremos distintos modulos de flask por medio del instalador p
 
 ## Activando entorno virtual:
 _Todas las instalaciones de modulos python que se hagan estaran referidas a este entorno virtual y estaran disponibles mientras esté activado el entorno vitual._
->source **pruebaflask**/bin/activate
+>source **pruebaflask**/bin/activate 
+> 
+>deactivate (para salir del entorno virtual)
+
