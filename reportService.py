@@ -1,5 +1,6 @@
 import datetime
 
+
 def crossdocking(mongo, date_from, date_to):
     findfilters = {
         'log.date': {
