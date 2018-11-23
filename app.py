@@ -1,7 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify, json
 from flask_pymongo import PyMongo
 import db
 import reportService
+import numpy as np
 
 app = Flask(__name__)
 
@@ -16,12 +17,13 @@ def home():
     return render_template("index.html", users=users)
 
 
-@app.route('/report/crossdocking')
+@app.route('/crossdocking')
 def crossdocking():
-    date = {'dateFrom': '2018-01-24', 'dateTo': '2018-01-25'}
-    storage = reportService.crossdocking(mongo, date)
-    #print(storage)
-    return render_template("index.html", storage=storage)
+    date_from = request.args.get('dateFrom', '')
+    date_to = request.args.get('dateTo', '')
+    storage = reportService.crossdocking(mongo, date_from, date_to)
+
+    return jsonify(storage)
 
 
 if __name__ == '__main__':
